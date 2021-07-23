@@ -41,7 +41,7 @@ def topological_sort(adj_matrix):
     while stack:
         node = stack.pop()
         answer.append(node)
-        print(f"pop된 노드: {node}")
+        print(f"pop된 노드 : {node}")
         for i, elem in enumerate(adj_matrix[node]):
             if elem != 0:
                 in_degrees[i] -= 1
@@ -51,4 +51,4 @@ def topological_sort(adj_matrix):
 
     return answer
 
-print(topological_sort(adj_matrix))
+print(f'answer : {topological_sort(adj_matrix)}')
