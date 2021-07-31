@@ -6,6 +6,7 @@ import sys
 # 보다 빠르게 계산할 수 있다.
 
 # 백준 2003번 수들의합2 다시 풀어보기..
+
 N, M = map(int, sys.stdin.readline().split())
 A = list(map(int, sys.stdin.readline().split()))
 
