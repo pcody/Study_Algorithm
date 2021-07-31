@@ -7,7 +7,7 @@ for i in range(N):
 
 arr.sort()
 left = 0
-right = left + 1
+right = 1
 
 answer = sys.maxsize
 while left < N - 1:
@@ -15,7 +15,10 @@ while left < N - 1:
     if diff >= M:
         answer = min(answer, diff)
         left += 1
-        right = left + 1
+        # 기존 풀이와 똑같아서 놀랐다
+        # 여기서 더 작은 차이를 찾으려면 right을 +1 하지 않고 고정시키는게 맞는 것 같다
+        # 근데 답은 나오네
+        # right = left + 1
     else:
         if right < N-1:
             right += 1
