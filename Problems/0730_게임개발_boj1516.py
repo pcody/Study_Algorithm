@@ -5,19 +5,29 @@ from collections import deque
 def topologySort(N, buildTime, indegrees, graphs):
     q = deque()
     answer = [0] * (N + 1)
+
+    # 진입차수가 0인 노드부터 시작
     for i in range(1, N + 1):
         if indegrees[i] == 0:
             q.append(i)
 
     while q:
+        # 현재 노드에 노드의 건축 시간을 더해준다
         cur = q.popleft()
         answer[cur] += buildTime[cur]
 
+        # 현재 노드에 연결되어 있는 노드들을 탐색한다        
         for next in graphs[cur]:
+            # 탐색 중인 노드의 진입차수를 1 감소시킨다
             indegrees[next] -= 1
+
+            # 해당 경로의 비용이 최대값이면 변경해준다
             answer[next] = max(answer[next], answer[cur])
+
+            # 진입차수가 0이면 큐에 넣는다
             if indegrees[next] == 0:
                 q.append(next)
+
     return answer
             
 N = int(sys.stdin.readline().rstrip())
@@ -27,7 +37,11 @@ graphs = defaultdict(list)
 for i in range(1, N + 1):
     temp = list(map(int, sys.stdin.readline().split()))
     buildTime[i] = temp[0]
+    
+    # 선행하는 건물의 개수가 해당 노드의 진입차수이다 (들어오는 간선 개수)
     indegrees[i] = len(temp[1:-1])
+
+    # 선행하는 건물에 i번 노드를 추가, 선행 건물 -> i번 노드의 의미
     for j in temp[1:-1]:
         graphs[j].append(i)
 
@@ -36,6 +50,7 @@ for i in range(1, N + 1):
     print(answer[i])
 
 
+## 인터넷 풀이...
 # import sys
 # from collections import deque
 
@@ -88,6 +103,8 @@ for i in range(1, N + 1):
 # answer = topology_sort()
 # for i in range(1, N + 1):
 #     print(answer[i])
+
+
 
 ## 진입차수를 매번 계산해야하고 nodeTime 리스트 또한 메모이제이션 기법으로 사용하지 못한다
 ## 이러한 이유로 메모리초과 문제가 발생하는 듯 하다
