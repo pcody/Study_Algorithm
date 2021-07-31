@@ -57,7 +57,6 @@ def dijkstra(start, graph):
     
     return distances
 
-
 graph = {
     'A': {'B': 10, 'C': 3},
     'B': {'C': 1, 'D': 2},
