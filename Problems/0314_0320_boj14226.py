@@ -12,17 +12,20 @@ def bfs(start):
             b = m;
         else:
             m -= 1;
-        if a == 1 and m >= N:
+        if m == N:
             return num;
         if m < 0:
             continue;
         # 1.출력(클립보드->화면) / 2.저장(화면->클립보드) / 3.삭제(화면에 이모티콘 1개 삭제)
         if visited.get((num + 1, 1, m, b)) != 1:
             queue.append([num + 1, 1, m, b]);
+            visited[(num + 1, 1, m, b)] = 1;
         if visited.get((num + 1, 2, m, b)) != 1:
             queue.append([num + 1, 2, m, b]);
+            visited[(num + 1, 2, m, b)] = 1;
         if visited.get((num + 1, 3, m, b)) != 1:
             queue.append([num + 1, 3, m, b]);
+            visited[(num + 1, 3, m, b)] = 1;
 
 N = int(input());
 visited = dict();
