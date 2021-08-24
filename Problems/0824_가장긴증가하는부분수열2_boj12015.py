@@ -7,7 +7,7 @@ def dp(N, A):
     # A[i]보다 작은 값 중 최대 idx를 찾아서 넣는다
     res[0] = A[0]
     if N == 1:
-        return res[N - 1]
+        return 1
         
     for i in range(1, N):
         print(res)
@@ -45,6 +45,9 @@ res = [sys.maxsize] * N
 print(dp(N, A))
 
 # print(binarySearch([10,20,40,50,11,12,13,14], 18))
+# a = [4,7,10,3,1,8,9,10,7,2,5,7]
+# a.sort()
+# print(binarySearch(a, 8))
 # 8
 # 10 20 40 50 11 12 13 14
 # 12
