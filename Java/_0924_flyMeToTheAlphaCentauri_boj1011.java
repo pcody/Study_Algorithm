@@ -62,6 +62,7 @@ public class _0924_flyMeToTheAlphaCentauri_boj1011 {
         rd.close();
     }
 }
+
 // y-x = 3, (y-x)/2 = 1
 // n 1 2
 // s 1 3
