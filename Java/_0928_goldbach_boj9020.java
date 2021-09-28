@@ -7,10 +7,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class _0928_goldbach_boj9020 {
+    static int[] primes = new int[10001];
+
     public static void main(String[] args) throws IOException {
         BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(rd.readLine());
         StringBuilder sb = new StringBuilder();
+        for (int i = 2; i < 10001; i++) {
+            primes[i] = i;
+        }
+        for (int j = 2; j <= 10000; j++) {
+            for (int i = j + j; i < 10001; i += j) {
+                if (primes[i] != 0)
+                    primes[i] = 0;
+            }
+        }
 
         for (int i = 0; i < T; i++) {
             int n = Integer.parseInt(rd.readLine());
@@ -19,14 +30,14 @@ public class _0928_goldbach_boj9020 {
 
             // System.out.println(isPrime(n));
             for (int j = 2; j < n; j++) {
-                if (isPrime1(j)) {
+                if (isPrime(j)) {
                     arr.add(j);
                 }
             }
 
             for (int a : arr) {
                 int b = n - a;
-                if (!isPrime1(b)) {
+                if (!isPrime(b)) {
                     continue;
                 }
                 int[] temp = { a, b };
@@ -54,6 +65,7 @@ public class _0928_goldbach_boj9020 {
     // num을 i = 2 ~ sqrt(num) 까지 나누는 방식의 소수판별 말고
     // 에라토스테네스의 체 개념 사용
     // 시간초과..
+    // -> 에라토스테네스의 체를 10000개까지 해놓고 사용하면 더 빠르게 통과
     public static Boolean isPrime1(int num) {
         if (num == 1) {
             return false;
@@ -67,18 +79,7 @@ public class _0928_goldbach_boj9020 {
     }
 
     public static Boolean isPrime(int num) {
-        int[] arr = new int[num + 1];
-        for (int i = 2; i < num + 1; i++) {
-            arr[i] = i;
-        }
-
-        for (int j = 2; j <= (int) Math.sqrt(num); j++) {
-            for (int i = j; i < num + 1; i += j) {
-                arr[i] = 0;
-            }
-        }
-
-        if (arr[num] == 0)
+        if (primes[num] == 0)
             return false;
         else
             return true;
