@@ -13,7 +13,7 @@ class Point220123 {
     }
 }
 
-public class _220123_intersectOfSegments_boj17387 {
+public class _220123_intersectOfSegments2_boj17387 {
     public static void main(String[] args) throws IOException {
         BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
         Point220123 p1, p2, p3, p4;
